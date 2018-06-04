@@ -65,21 +65,3 @@ private:
     static QJsonObject convertAndCheckPocket(QJsonObject in, double tableWidth, double tableHeight);
 };
 
-class StageThreeBuilder : public GameBuilder{
-public:
-    virtual ~StageThreeBuilder() {delete m_builder;}
-    StageThreeBuilder() : m_builder(new StageTwoBuilder()){}
-    // GameBuilder interface
-    virtual void addBall(QJsonObject &ballData) override{
-        m_builder->addBall(ballData);
-    }
-    virtual void addTable(QJsonObject &tableData) override{
-        m_builder->addTable(tableData);
-    }
-    virtual Game *getResult() override{
-        return m_builder->getResult();
-    }
-
-private:
-    StageTwoBuilder* m_builder;
-};

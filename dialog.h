@@ -2,6 +2,7 @@
 #include <QDialog>
 #include "ball.h"
 #include "game.h"
+#include "stagethreegame.h"
 
 namespace Ui {
 class Dialog;
@@ -62,5 +63,9 @@ private:
      * @brief m_game - our game object to be played
      */
     Game* m_game = nullptr;
+
+    // QWidget interface
+protected:
+    void keyPressEvent(QKeyEvent *event);
 };
 

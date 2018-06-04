@@ -11,6 +11,7 @@
 #include "utils.h"
 
 class Game {
+protected:
     std::vector<Ball*>* m_balls;
     Table* m_table;
 
@@ -32,19 +33,19 @@ private:
      */
     void updateShake(double dt);
 public:
-    ~Game();
+    virtual ~Game();
     Game(std::vector<Ball*>* balls, Table* table) :
         m_balls(balls), m_table(table) {}
     /**
      * @brief Draws all owned objects to the screen (balls and table)
      * @param painter - qtpainter to blit to screen with
      */
-    void render(QPainter& painter) const;
+    virtual void render(QPainter& painter) const;
     /**
      * @brief Updates the positions of all objects within, based on how much time has changed
      * @param dt - time elapsed since last frame in seconds
      */
-    void animate(double dt);
+    virtual void animate(double dt);
 
     /* how large the window's width should at least be */
     int getMinimumWidth() const { return m_table->getWidth(); }
@@ -91,4 +92,8 @@ public:
      * @return event queue of event functions
      */
     MouseEventable::EventQueue& getEventFns() { return m_mouseEventFunctions; }
+
+    std::vector<Ball*>* getBalls() const {return m_balls;}
+
+    Table* getTable() const {return m_table;}
 };

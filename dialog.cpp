@@ -74,3 +74,11 @@ void Dialog::evalAllEventsOfTypeSpecified(MouseEventable::EVENTS t, QMouseEvent 
         }
     }
 }
+
+void Dialog::keyPressEvent(QKeyEvent *event)
+{
+    StageThreeGame* stageThreeGame =
+            dynamic_cast<StageThreeGame*>(m_game);
+    if(!stageThreeGame) return;
+    stageThreeGame->keyPress(event->key() == Qt::Key_R);
+}

@@ -8,6 +8,7 @@
 #include "utils.h"
 #include "gamebuilder.h"
 #include "stagetwobuilder.h"
+#include "stagethreebuilder.h"
 #include <QApplication>
 #include <QFile>
 #include <iostream>

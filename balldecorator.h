@@ -51,6 +51,8 @@ protected:
 
 public:
     CueBall(Ball* b) : BallDecorator(b), MouseEventable(this) {}
+    CueBall(const CueBall& ball) : BallDecorator(ball.m_subBall->clone()),
+        MouseEventable(this) {}
     ~CueBall() {}
 
     /**
@@ -81,6 +83,10 @@ public:
      * @param e - the mouse event caused by clicking
      */
     virtual void mouseReleaseEvent(QMouseEvent* e) override;
+
+    virtual Ball* clone() const override{
+        return new CueBall(*this);
+    }
 };
 
 class BallSparkleDecorator : public BallDecorator {
@@ -103,13 +109,19 @@ protected:
     std::vector<Sparkle> m_sparklePositions;
 public:
     BallSparkleDecorator(Ball* b) : BallDecorator(b) {}
+    BallSparkleDecorator(const BallSparkleDecorator& ball):
+        BallDecorator(ball.m_subBall->clone()){}
 
     /**
      * @brief render - draw the underlying ball and also the sparkles
      * @param painter - the brush to use to draw
      * @param offset - the offset that this ball is from the origin
      */
-    void render(QPainter &painter, const QVector2D &offset);
+    virtual void render(QPainter &painter, const QVector2D &offset) override;
+
+    virtual Ball* clone() const override {
+        return new BallSparkleDecorator(*this);
+    }
 };
 
 class BallSmashDecorator : public BallDecorator {
@@ -134,6 +146,8 @@ protected:
     void addCrumbs(QPointF cPos);
 public:
     BallSmashDecorator(Ball* b) : BallDecorator(b) {}
+    BallSmashDecorator(const BallSmashDecorator& ball):
+        BallDecorator(ball.m_subBall->clone()) {}
 
     /**
      * @brief changeVelocity - set the velocity of the ball, as well as generate particles (if applicable)
@@ -157,4 +171,8 @@ public:
      * @param offset - the offset from the window that this ball's pos is.
      */
     virtual void render(QPainter &painter, const QVector2D &offset) override;
+
+    virtual Ball* clone() const override{
+        return new BallSmashDecorator(*this);
+    }
 };
