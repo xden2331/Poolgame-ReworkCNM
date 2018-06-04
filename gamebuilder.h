@@ -11,6 +11,8 @@ protected:
 public:
     virtual ~GameBuilder();
     GameBuilder(AbstractStageFactory* factory) : m_factory(factory) {}
+    GameBuilder(){}
+
     /**
      * @brief addBall creates a ball to the current game being buil
      * @param ballData - json object that is simply an element of the array of balls provided in the config
