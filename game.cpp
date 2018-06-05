@@ -50,6 +50,13 @@ void Game::animate(double dt) {
         // check whether ball should be swallowed
         if (m_table->sinks(ballA)) {
             // defer swallowing until later (messes iterators otherwise)
+            CueBall* cb = dynamic_cast<CueBall*>(ballA);
+            if(cb != nullptr){
+                cb->setPosition(QVector2D(m_table->getWidth()/2,
+                                m_table->getHeight()/2));
+                cb->multiplyVelocity(QVector2D(0,0));
+                continue;
+            }
             toBeRemoved.push_back(ballA);
             // nullify this ball
             *it = nullptr;

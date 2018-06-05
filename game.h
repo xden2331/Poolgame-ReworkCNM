@@ -96,4 +96,9 @@ public:
     std::vector<Ball*>* getBalls() const {return m_balls;}
 
     Table* getTable() const {return m_table;}
+
+    bool isCueBallMoving() const {
+        CueBall* cb = dynamic_cast<CueBall*>(m_balls->front());
+        return cb->isSubBallMoving();
+    }
 };

@@ -21,7 +21,19 @@ Memento* StageThreeGame::createMemento(){
 }
 
 void StageThreeGame::revert(){
-    State* lastState = m_mementoes.at(0)->getLastState();
+    Memento* memento = nullptr;
+    auto idx = 0;
+    if(isCueBallMoving()){
+        memento = new Memento();
+        memento = m_mementoes.at(idx);
+        m_mementoes.clear();
+        m_mementoes.push_back(memento);
+    }else{
+        if(m_mementoes.size() > 1){
+            idx = m_mementoes.size()-2;
+        }
+    }
+    State* lastState = m_mementoes.at(idx)->getLastState();
     auto lastBalls = lastState->getBalls();
     m_balls->clear();
     for(auto b : lastBalls){
@@ -34,5 +46,10 @@ void StageThreeGame::revert(){
 }
 
 void StageThreeGame::checkMemento(){
-    //CueBall* cb = dynamic_cast<CueBall*>(Game::getBalls()->front());
+    if(!isCueBallMoving() && !hadMemento){
+        m_mementoes.push_back(createMemento());
+        hadMemento = true;
+    }else if(isCueBallMoving()){
+        hadMemento = false;
+    }
 }
