@@ -82,7 +82,7 @@ public:
     virtual void mouseReleaseEvent(QMouseEvent* e) override;
 
     // whether we can consider this ball as having stopped.
-    inline bool isSubBallMoving() const { return m_subBall->getVelocity().length() > MovementEpsilon; }
+    inline bool isSubBallMoving() const { return (m_subBall->getVelocity().length() > MovementEpsilon); }
 
     virtual Ball* clone() const override{
         return new CueBall(*this);

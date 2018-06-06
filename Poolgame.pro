@@ -36,7 +36,9 @@ SOURCES += \
     stagetwobuilder.cpp \
     balldecorator.cpp \
     stagethreegame.cpp \
-    stagethreebuilder.cpp
+    stagethreebuilder.cpp \
+    command.cpp \
+    createballdialog.cpp
 
 HEADERS += \
         dialog.h \
@@ -55,7 +57,9 @@ HEADERS += \
     stagethreebuilder.h \
     stagethreegame.h \
     state.h \
-    memento.h
+    memento.h \
+    command.h \
+    createballdialog.h
 
 FORMS += \
         dialog.ui

@@ -53,3 +53,14 @@ void StageThreeGame::checkMemento(){
         hadMemento = false;
     }
 }
+
+void StageThreeGame::createBall(QVector2D &pos, QVector2D &vel, QColor &color, int radius, double mass)
+{
+    Ball* ball = new StageOneBall(color, pos, vel, mass, radius);
+    auto balls = Game::getBalls();
+    balls->push_back(ball);
+
+    auto memento = createMemento();
+    m_mementoes.clear();
+    m_mementoes.push_back(memento);
+}

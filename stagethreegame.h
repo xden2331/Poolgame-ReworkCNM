@@ -33,6 +33,9 @@ public:
     Memento* createMemento();
 
     void revert();
+
+    void createBall(QVector2D& pos, QVector2D& vel,
+                    QColor& color, int radius, double mass);
 };
 
 #endif // STAGETHREEGAME_H

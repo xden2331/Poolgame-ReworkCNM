@@ -6,6 +6,7 @@
 #include <QMouseEvent>
 #include "utils.h"
 
+
 Dialog::Dialog(Game *game, QWidget* parent) :
     QDialog(parent),
     ui(new Ui::Dialog),
@@ -25,6 +26,14 @@ Dialog::Dialog(Game *game, QWidget* parent) :
 
     // set the window size to be at least the table size
     this->resize(game->getMinimumWidth(), game->getMinimumHeight());
+    if(dynamic_cast<StageThreeGame*>(m_game)){
+        // Source: https://blog.csdn.net/mengxiangjia_linxi/article/details/76522510
+        QPushButton* button_exec = new QPushButton("Create Ball", this);
+        connect(button_exec, SIGNAL(clicked()), this, SLOT(slotButtonClick_createBall()));
+        button_exec->setMaximumWidth(100);
+        button_exec->move(game->getMinimumWidth()/2-30,
+                          game->getMinimumHeight()-30);
+    }
 }
 
 Dialog::~Dialog()
@@ -33,6 +42,7 @@ Dialog::~Dialog()
     delete dTimer;
     delete m_game;
     delete ui;
+    delete command;
 }
 
 void Dialog::tryRender() {
@@ -81,4 +91,11 @@ void Dialog::keyPressEvent(QKeyEvent *event)
             dynamic_cast<StageThreeGame*>(m_game);
     if(!stageThreeGame) return;
     stageThreeGame->keyPress(event->key() == Qt::Key_R);
+}
+
+void Dialog::slotButtonClick_createBall()
+{
+    command = new CreateBallCommand(m_game, this);
+    if(command) command->execute();
+    command = nullptr;
 }

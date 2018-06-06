@@ -1,8 +1,12 @@
 #pragma once
 #include <QDialog>
+#include <QMainWindow>
 #include "ball.h"
 #include "game.h"
 #include "stagethreegame.h"
+#include "command.h"
+
+#include <QPushButton>
 
 namespace Ui {
 class Dialog;
@@ -14,7 +18,7 @@ class Dialog : public QDialog
 
 public:
     explicit Dialog(Game* game, QWidget *parent = 0);
-    ~Dialog();
+    virtual ~Dialog();
 
 protected:
     /**
@@ -39,6 +43,9 @@ public slots:
     void mouseMoveEvent(QMouseEvent* event);
 
     void keyPressEvent(QKeyEvent *event);
+
+    void slotButtonClick_createBall();
+
 private:
     /**
      * @brief evalAllEventsOfTypeSpecified - for each of the functions in the event queue
@@ -66,5 +73,6 @@ private:
      */
     Game* m_game = nullptr;
 
+    Command* command = nullptr;
 };
 
