@@ -4,6 +4,7 @@
 #include <QTimer>
 #include <iostream>
 #include <QMouseEvent>
+#include <QHBoxLayout>
 #include "utils.h"
 
 
@@ -30,8 +31,15 @@ Dialog::Dialog(Game *game, QWidget* parent) :
         // Source: https://blog.csdn.net/mengxiangjia_linxi/article/details/76522510
         QPushButton* button_exec = new QPushButton("Create Ball", this);
         connect(button_exec, SIGNAL(clicked()), this, SLOT(slotButtonClick_createBall()));
+        //end
+        QPushButton* button_mixedBall = new QPushButton("Mix all balls", this);
+        connect(button_mixedBall, SIGNAL(clicked()), this, SLOT(slotButtonClick_createMixedBall()));
+
         button_exec->setMaximumWidth(100);
         button_exec->move(game->getMinimumWidth()/2-30,
+                          game->getMinimumHeight()-30);
+        button_mixedBall->setMaximumWidth(100);
+        button_mixedBall->move(game->getMinimumWidth()/2+70,
                           game->getMinimumHeight()-30);
     }
 }
@@ -98,4 +106,16 @@ void Dialog::slotButtonClick_createBall()
     command = new CreateBallCommand(m_game, this);
     if(command) command->execute();
     command = nullptr;
+}
+
+void Dialog::slotButtonClick_createMixedBall(){
+    int ret = QMessageBox::question(this, "Warning", "Do you want to create a ball mixing all "
+                                                     "existing balls (average their radius,"
+                                                     "mass, color etc.)?"
+                                                     "\nIt will reset the state of the memento list.",
+                                    QMessageBox::Yes | QMessageBox::No);
+    if(ret == QMessageBox::No) return;
+
+    StageThreeGame* game = dynamic_cast<StageThreeGame*>(m_game);
+    game->visitBalls();
 }

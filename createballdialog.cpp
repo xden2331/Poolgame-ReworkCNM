@@ -85,6 +85,7 @@ void CreateBallDialog::slotButtonClick_pos(){
     xLabel->setBuddy(m_posXInput);
     QHBoxLayout* h1layout = new QHBoxLayout();
     h1layout->addWidget(xLabel);
+    m_posXInput->setParent(&d);
     h1layout->addWidget(m_posXInput);
 
     std::string y_range = "range: [0, " + std::to_string(m_receiver->getMinimumHeight()) + "]";
@@ -93,6 +94,7 @@ void CreateBallDialog::slotButtonClick_pos(){
     yLabel->setBuddy(m_posYInput);
     QHBoxLayout* h2layout = new QHBoxLayout();
     h2layout->addWidget(yLabel);
+    m_posYInput->setParent(&d);
     h2layout->addWidget(m_posYInput);
 
     layout->setMargin(10);
@@ -100,6 +102,7 @@ void CreateBallDialog::slotButtonClick_pos(){
     layout->addLayout(h1layout);
     layout->addWidget(y_rangeLabel);
     layout->addLayout(h2layout);
+    m_submit->setParent(&d);
     layout->addWidget(m_submit);
     d.setLayout(layout);
     d.setWindowTitle("Setting position");
@@ -133,16 +136,19 @@ void CreateBallDialog::slotButtonClick_vel(){
     xLabel->setBuddy(m_velXInput);
     QHBoxLayout* h1layout = new QHBoxLayout();
     h1layout->addWidget(xLabel);
+    m_velXInput->setParent(&d);
     h1layout->addWidget(m_velXInput);
 
     QLabel* yLabel = new QLabel("y-coordinator:");
     yLabel->setBuddy(m_velYInput);
     QHBoxLayout* h2layout = new QHBoxLayout();
     h2layout->addWidget(yLabel);
+    m_velYInput->setParent(&d);
     h2layout->addWidget(m_velYInput);
     layout->setMargin(10);
     layout->addLayout(h1layout);
     layout->addLayout(h2layout);
+    m_submitVel->setParent(&d);
     layout->addWidget(m_submitVel);
     d.setLayout(layout);
     d.setWindowTitle("Setting velocity");

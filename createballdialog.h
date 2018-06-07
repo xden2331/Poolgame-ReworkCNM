@@ -29,18 +29,13 @@ class CreateBallDialog : public QDialog
 public:
     explicit CreateBallDialog(Game* receiver, QDialog* parent = 0);
     virtual ~CreateBallDialog(){
-        if(m_pos != nullptr) {
-            delete m_pos;
-        }
-        delete m_posXInput;
-        delete m_posYInput;
+        // We do not need to delete those QWidget pointers, as
+        // in the cpp file, their parents are set, and they will take care of
+        // the 'delete'
+
+        if(m_pos != nullptr) delete m_pos;
         if(m_color != nullptr) delete m_color;
-        delete m_submit;
         if(m_vel != nullptr) delete m_vel;
-        delete m_velXInput;
-        delete m_velYInput;
-        delete m_radiusInput;
-        delete m_massInput;
     }
 
 public slots:
@@ -60,15 +55,15 @@ private:
 private:
     Game* m_receiver;
 
-    QPushButton* m_submit;
-    QPushButton* m_submitVel;
+    QPushButton* m_submit = nullptr;
+    QPushButton* m_submitVel = nullptr;
 
-    QLineEdit* m_posXInput;
-    QLineEdit* m_posYInput;
-    QLineEdit* m_velXInput;
-    QLineEdit* m_velYInput;
-    QLineEdit* m_radiusInput;
-    QLineEdit* m_massInput;
+    QLineEdit* m_posXInput = nullptr;
+    QLineEdit* m_posYInput = nullptr;
+    QLineEdit* m_velXInput = nullptr;
+    QLineEdit* m_velYInput = nullptr;
+    QLineEdit* m_radiusInput = nullptr;
+    QLineEdit* m_massInput = nullptr;
 
     QColor* m_color = nullptr;
     QVector2D* m_pos = nullptr;

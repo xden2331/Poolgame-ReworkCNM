@@ -6,6 +6,8 @@
 #include "subject.h"
 #include "observer.h"
 
+#include "visitor.h"
+
 #define CUE_BALL_REST 0
 
 class StageThreeGame : public Game, public Subject
@@ -47,6 +49,8 @@ public:
 
     void createBall(QVector2D& pos, QVector2D& vel,
                     QColor& color, int radius, double mass);
+
+    void visitBalls();
 
     // Subject interface
 public:

@@ -66,7 +66,7 @@ public:
      * @param e - the mouse event caused by clicking
      */
     virtual void mouseClickEvent(QMouseEvent* e) override;
-    
+
     /**
      * @brief mouseMoveEvent - update where the current end of the mouse drag is.
      *      Used when the mouse is moved, i.e. not released, but dragged.

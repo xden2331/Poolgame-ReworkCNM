@@ -65,3 +65,18 @@ void StageThreeGame::createBall(QVector2D &pos, QVector2D &vel, QColor &color, i
     m_mementoes.clear();
     m_mementoes.push_back(memento);
 }
+
+void StageThreeGame::visitBalls(){
+    MixingBallVisitor visitor = MixingBallVisitor();
+    for(Ball* b : *Game::getBalls()){
+        b->accept(visitor);
+    }
+
+    Ball* ball = visitor.getMixedBall();
+    auto balls = Game::getBalls();
+    balls->push_back(ball);
+
+    auto memento = createMemento();
+    m_mementoes.clear();
+    m_mementoes.push_back(memento);
+}

@@ -5,6 +5,8 @@
 #include <QPainter>
 #include <QVector2D>
 
+#include "visitor.h"
+
 class Ball {
 protected:
     QBrush m_brush;
@@ -58,6 +60,10 @@ public:
     virtual bool applyBreak(const QVector2D&, std::vector<Ball*>&) { return false; }
 
     virtual Ball* clone() const = 0;
+
+    virtual void accept(Visitor& visitor){
+        visitor.visitSimpleBall(this);
+    }
 };
 
 class StageOneBall : public Ball {
@@ -119,5 +125,12 @@ public:
 
     virtual Ball* clone() const override{
         return new CompositeBall(*this);
+    }
+
+    virtual void accept(Visitor& visitor) override{
+        visitor.visitCompositeBall(this);
+        for(auto c : m_children){
+            visitor.visitSimpleBall(c);
+        }
     }
 };

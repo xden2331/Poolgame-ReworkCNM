@@ -39,7 +39,8 @@ SOURCES += \
     stagethreebuilder.cpp \
     command.cpp \
     createballdialog.cpp \
-    observer.cpp
+    observer.cpp \
+    visitor.cpp
 
 HEADERS += \
         dialog.h \
@@ -62,7 +63,8 @@ HEADERS += \
     command.h \
     createballdialog.h \
     subject.h \
-    observer.h
+    observer.h \
+    visitor.h
 
 FORMS += \
         dialog.ui

@@ -1,6 +1,7 @@
 #pragma once
 #include <QDialog>
 #include <QMainWindow>
+#include <QMessageBox>
 #include "ball.h"
 #include "game.h"
 #include "stagethreegame.h"
@@ -45,6 +46,8 @@ public slots:
     void keyPressEvent(QKeyEvent *event);
 
     void slotButtonClick_createBall();
+
+    void slotButtonClick_createMixedBall();
 
 private:
     /**
