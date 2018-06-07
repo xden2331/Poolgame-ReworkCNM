@@ -50,6 +50,7 @@ int main(int argc, char *argv[])
 
     // display our dialog that contains our game and run
     QApplication a(argc, argv);
+
     Dialog w(game, nullptr);
     w.show();
 

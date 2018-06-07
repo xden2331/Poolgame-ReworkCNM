@@ -47,6 +47,7 @@ void StageThreeGame::revert(){
 
 void StageThreeGame::checkMemento(){
     if(!isCueBallMoving() && !hadMemento){
+        StageThreeGame::notifyObservers(CUE_BALL_REST);
         m_mementoes.push_back(createMemento());
         hadMemento = true;
     }else if(isCueBallMoving()){

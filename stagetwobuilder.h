@@ -64,4 +64,3 @@ private:
      */
     static QJsonObject convertAndCheckPocket(QJsonObject in, double tableWidth, double tableHeight);
 };
-

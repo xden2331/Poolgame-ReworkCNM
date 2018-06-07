@@ -15,3 +15,5 @@ constexpr int animFrameMS = 16;
 constexpr int drawFrameMS = 16;
 
 constexpr double DOUBLEINF = std::numeric_limits<double>::max();
+
+enum Sound {cueballRest, collisionWithBalls, collisionWithTable};

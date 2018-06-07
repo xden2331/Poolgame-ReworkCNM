@@ -9,9 +9,17 @@
 
 Game::~Game() {
     // cleanup ya boi
-    for (auto b : *m_balls) delete b;
-    delete m_balls;
-    delete m_table;
+    if(m_balls != nullptr){
+        for (auto b : *m_balls){
+            if(b != nullptr){
+                delete b;
+            }
+        }
+        delete m_balls;
+    }
+    if(m_table != nullptr){
+        delete m_table;
+    }
 }
 
 void Game::render(QPainter &painter) const {

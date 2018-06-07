@@ -29,13 +29,14 @@ class CreateBallDialog : public QDialog
 public:
     explicit CreateBallDialog(Game* receiver, QDialog* parent = 0);
     virtual ~CreateBallDialog(){
-        delete m_receiver;
-        delete m_pos;
+        if(m_pos != nullptr) {
+            delete m_pos;
+        }
         delete m_posXInput;
         delete m_posYInput;
-        delete m_color;
+        if(m_color != nullptr) delete m_color;
         delete m_submit;
-        delete m_vel;
+        if(m_vel != nullptr) delete m_vel;
         delete m_velXInput;
         delete m_velYInput;
         delete m_radiusInput;
